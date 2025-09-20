@@ -33,6 +33,48 @@ graph TD
   B --> G[Check Hash Match]
   G --> H[Verified / Fake]
 
+---
+## Folder structure
+
+## Project Structure
+
+```bash
+kwelichain/
+├─ apps/
+│  └─ frontend/                     # Next.js + Tailwind (your frontend)
+├─ backend/
+│  ├─ cmd/
+│  │  └─ server/                    # main.go entry for the HTTP server
+│  ├─ internal/
+│  │  ├─ config/                    # DB, env, app config
+│  │  ├─ db/                        # migrations, sql (postgres)
+│  │  ├─ models/                    # GORM models / DTOs
+│  │  ├─ repository/                # DB access (one per model)
+│  │  ├─ service/                   # business logic + chain client
+│  │  ├─ handlers/                  # HTTP handlers (versioned)
+│  │  ├─ middleware/                # auth, rate-limit, logging
+│  │  ├─ contracts/                 # abigen-generated bindings
+│  │  └─ utils/                     # hashing, storage helpers
+│  ├─ Dockerfile
+│  └─ go.mod
+├─ smart-contract/
+│  ├─ contracts/
+│  │  └─ DocumentRegistry.sol
+│  ├─ scripts/
+│  │  └─ deploy.js
+│  ├─ hardhat.config.js
+│  └─ package.json
+├─ infra/
+│  └─ docker-compose.yml            # Postgres, minio (S3), optionally redis
+├─ .github/
+│  └─ workflows/ci.yml
+├─ docs/
+│  └─ openapi.yaml (generated)
+├─ README.md
+└─ .env.example
+
+---
+
 
 Commit changes (git commit -m 'Add amazing feature')
 
