@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwelichain Demo - All Views</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            border-radius: 1rem;
+        }
+        .demo-nav {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .demo-nav button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-blue);
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .demo-nav button:hover,
+        .demo-nav button.active {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .demo-section {
+            display: none;
+            min-height: 80vh;
+        }
+        .demo-section.active {
+            display: block;
+        }
+        .demo-info {
+            background: var(--gray-100);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>Kwelichain UI/UX Demo</h1>
+            <p>Explore all the different views and components of the Kwelichain certificate verification platform</p>
+        </div>
+
+        <div class="demo-nav">
+            <button class="active" data-view="landing">🏠 Landing Page</button>
+            <button data-view="dashboard">🏢 Institution Dashboard</button>
+            <button data-view="student">👨‍🎓 Student Page</button>
+            <button data-view="verifier">🔍 Verifier Page</button>
+        </div>
+
+        <!-- Landing Page Demo -->
+        <div class="demo-section active" id="landing-demo">
+            <div class="demo-info">
+                <h3>Landing Page Features</h3>
+                <p>Hero section with gradient text, feature grid, and call-to-action buttons. Includes animated certificate preview.</p>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <span class="logo-text">Kwelichain</span>
+                    </div>
+                    
+                    <div class="nav-links">
+                        <a href="#verify" class="nav-link">Verify</a>
+                        <a href="#students" class="nav-link">Students</a>
+                        <a href="#institutions" class="nav-link">Institutions</a>
+                    </div>
+                    
+                    <div class="nav-actions">
+                        <button class="btn btn-outline">Login</button>
+                        <button class="btn btn-primary">Get Started</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Blockchain-Powered<br>
+                            <span class="text-gradient">Certificate Verification</span>
+                        </h1>
+                        <p class="hero-description">
+                            Secure, transparent, and tamper-proof certificate verification 
+                            powered by blockchain technology. Trust the future of credentials.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-success btn-large">
+                                <i class="fas fa-search"></i>
+                                Verify Certificate
+                            </button>
+                            <button class="btn btn-primary btn-large">
+                                <i class="fas fa-building"></i>
+                                Institution Login
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="certificate-card">
+                            <div class="certificate-header">
+                                <div class="cert-logo">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="cert-title">Blockchain Developer Certificate</div>
+                            </div>
+                            <div class="cert-content">
+                                <div class="cert-student">John Doe</div>
+                                <div class="cert-issuer">Kwelichain Academy</div>
+                                <div class="cert-date">Issued: March 2024</div>
+                                <div class="cert-verification">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified on Blockchain
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <div class="container">
+                    <h2 class="section-title">Why Choose Kwelichain?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Secure Verification</h3>
+                            <p>Blockchain technology ensures certificates cannot be forged or tampered with, providing ultimate security.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h3>Blockchain-backed</h3>
+                            <p>Every certificate is permanently recorded on the blockchain, creating an immutable record of achievement.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <h3>Easy Sharing</h3>
+                            <p>Share verified certificates instantly with employers, institutions, or anyone who needs to verify credentials.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Dashboard Demo -->
+        <div class="demo-section" id="dashboard-demo">
+            <div class="demo-info">
+                <h3>Institution Dashboard Features</h3>
+                <p>Admin panel with sidebar navigation, stats cards, upload area, and certificate management table.</p>
+            </div>
+            
+            <div class="dashboard-container">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <div class="logo-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <span class="logo-text">Kwelichain</span>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a href="#" class="nav-item active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-upload"></i>
+                            Upload Certificate
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-list"></i>
+                            Manage Certificates
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-ban"></i>
+                            Revoked Certificates
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="dashboard-main">
+                    <div class="dashboard-header">
+                        <h1>Institution Dashboard</h1>
+                        <div class="user-info">
+                            <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                            <span>Admin User</span>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>1,247</h3>
+                                <p>Total Issued</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>1,189</h3>
+                                <p>Active</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>58</h3>
+                                <p>Revoked</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upload Certificate Card -->
+                    <div class="upload-card">
+                        <h2>Upload Certificate</h2>
+                        <div class="upload-area">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>Drag & Drop Certificate</h3>
+                                <p>or click to browse files</p>
+                                <button class="btn btn-primary">Choose File</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificates Table -->
+                    <div class="certificates-table">
+                        <div class="table-header">
+                            <h2>Issued Certificates</h2>
+                            <div class="table-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-download"></i>
+                                    Export
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Add Certificate
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="certificates-table-content">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Course</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="student-info">
+                                                <img src="https://via.placeholder.com/32" alt="Student" class="student-avatar">
+                                                <span>John Doe</span>
+                                            </div>
+                                        </td>
+                                        <td>Blockchain Development</td>
+                                        <td>Mar 15, 2024</td>
+                                        <td><span class="status-badge status-active">Active</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline btn-danger">
+                                                    <i class="fas fa-ban"></i>
+                                                    Revoke
+                                                </button>
+                                                <button class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-qrcode"></i>
+                                                    QR
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="student-info">
+                                                <img src="https://via.placeholder.com/32" alt="Student" class="student-avatar">
+                                                <span>Jane Smith</span>
+                                            </div>
+                                        </td>
+                                        <td>Web3 Security</td>
+                                        <td>Mar 10, 2024</td>
+                                        <td><span class="status-badge status-active">Active</span></td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <button class="btn btn-sm btn-outline btn-danger">
+                                                    <i class="fas fa-ban"></i>
+                                                    Revoke
+                                                </button>
+                                                <button class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-qrcode"></i>
+                                                    QR
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Student Demo -->
+        <div class="demo-section" id="student-demo">
+            <div class="demo-info">
+                <h3>Student Page Features</h3>
+                <p>Student profile header with stats, certificate grid with cards, and action buttons for sharing and QR viewing.</p>
+            </div>
+            
+            <div class="container">
+                <div class="student-header">
+                    <div class="student-profile">
+                        <img src="https://via.placeholder.com/80" alt="Student" class="student-avatar-large">
+                        <div class="student-info">
+                            <h1>John Doe</h1>
+                            <p>Computer Science Student</p>
+                            <div class="student-stats">
+                                <span class="stat">
+                                    <strong>5</strong> Certificates
+                                </span>
+                                <span class="stat">
+                                    <strong>3</strong> Institutions
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificates-grid">
+                    <div class="certificate-card">
+                        <div class="cert-header">
+                            <div class="cert-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="cert-status">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="cert-content">
+                            <h3>Blockchain Development</h3>
+                            <p class="cert-issuer">Kwelichain Academy</p>
+                            <p class="cert-date">Issued: March 15, 2024</p>
+                        </div>
+                        <div class="cert-actions">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-qrcode"></i>
+                                View QR
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-share"></i>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <div class="cert-header">
+                            <div class="cert-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="cert-status">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="cert-content">
+                            <h3>Web3 Security</h3>
+                            <p class="cert-issuer">Crypto University</p>
+                            <p class="cert-date">Issued: February 28, 2024</p>
+                        </div>
+                        <div class="cert-actions">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-qrcode"></i>
+                                View QR
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-share"></i>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card">
+                        <div class="cert-header">
+                            <div class="cert-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="cert-status">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="cert-content">
+                            <h3>Smart Contract Development</h3>
+                            <p class="cert-issuer">Blockchain Institute</p>
+                            <p class="cert-date">Issued: January 20, 2024</p>
+                        </div>
+                        <div class="cert-actions">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-qrcode"></i>
+                                View QR
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-share"></i>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verifier Demo -->
+        <div class="demo-section" id="verifier-demo">
+            <div class="demo-info">
+                <h3>Verifier Page Features</h3>
+                <p>Certificate verification interface with upload zone, hash input, QR scanner, and verification results display.</p>
+            </div>
+            
+            <div class="container">
+                <div class="verifier-header">
+                    <h1>Certificate Verification</h1>
+                    <p>Upload a certificate or enter a hash to verify authenticity</p>
+                </div>
+
+                <div class="verification-area">
+                    <div class="verification-input">
+                        <div class="upload-zone">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>Upload Certificate</h3>
+                                <p>Drag and drop your certificate file here</p>
+                                <button class="btn btn-primary">Choose File</button>
+                            </div>
+                        </div>
+                        <div class="or-divider">
+                            <span>OR</span>
+                        </div>
+                        <div class="hash-input">
+                            <input type="text" placeholder="Enter certificate hash..." class="hash-field">
+                            <button class="btn btn-success">
+                                <i class="fas fa-search"></i>
+                                Verify Hash
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-qrcode"></i>
+                            Scan QR Code
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Verification Results -->
+                <div class="verification-result">
+                    <div class="result-card result-success">
+                        <div class="result-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="result-content">
+                            <h3>Certificate Verified ✅</h3>
+                            <div class="result-details">
+                                <div class="detail-row">
+                                    <span class="label">Student:</span>
+                                    <span class="value">John Doe</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Course:</span>
+                                    <span class="value">Blockchain Development</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Issuer:</span>
+                                    <span class="value">Kwelichain Academy</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Date:</span>
+                                    <span class="value">March 15, 2024</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Status:</span>
+                                    <span class="value status-verified">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.demo-nav button');
+            const sections = document.querySelectorAll('.demo-section');
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const view = this.getAttribute('data-view');
+                    
+                    // Update active button
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    const targetSection = document.getElementById(view + '-demo');
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
