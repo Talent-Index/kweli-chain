@@ -49,12 +49,12 @@ const LandingPage = () => {
                 <div className="cert-title">Blockchain Developer Certificate</div>
               </div>
               <div className="cert-content">
-                <div className="cert-student">John Doe</div>
-                <div className="cert-issuer">Kwelichain Academy</div>
-                <div className="cert-date">Issued: March 2024</div>
+                <div className="cert-student">Caleb Baraka</div>
+                <div className="cert-issuer">Curvegrid Academy</div>
+                <div className="cert-date">Issued: September 2025</div>
                 <div className="cert-verification">
                   <FontAwesomeIcon icon="check-circle" />
-                  Verified on Blockchain
+                  Verified by Kwelichain
                 </div>
               </div>
             </div>
@@ -96,3 +96,6 @@ const LandingPage = () => {
 }
 
 export default LandingPage
+
+
+
