@@ -1,47 +1,45 @@
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import api from '../api'
 
 const StudentPage = () => {
+  const [certificates, setCertificates] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchCertificates = async () => {
+      try {
+        const res = await api.get('/certificates')
+        setCertificates(res.data)
+      } catch (err) {
+        console.error('Error fetching certificates:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchCertificates()
+  }, [])
+
   const handleQRCode = (certificate) => {
-    console.log('Show QR code for:', certificate)
+    alert(`QR Code for: ${certificate.id}`)
   }
 
   const handleShare = (certificate) => {
+    const certLink = `${window.location.origin}/verify?hash=${certificate.hash}`
     if (navigator.share) {
       navigator.share({
         title: 'My Certificate',
         text: 'Check out my verified certificate on Kwelichain',
-        url: window.location.href
+        url: certLink,
       })
     } else {
-      navigator.clipboard.writeText(window.location.href).then(() => {
+      navigator.clipboard.writeText(certLink).then(() => {
         alert('Certificate link copied to clipboard!')
       })
     }
   }
 
-  const certificates = [
-    {
-      id: 1,
-      title: 'Blockchain Development',
-      issuer: 'Kwelichain Academy',
-      date: 'March 15, 2024',
-      icon: 'code'
-    },
-    {
-      id: 2,
-      title: 'Web3 Security',
-      issuer: 'Crypto University',
-      date: 'February 28, 2024',
-      icon: 'shield-alt'
-    },
-    {
-      id: 3,
-      title: 'Smart Contract Development',
-      issuer: 'Blockchain Institute',
-      date: 'January 20, 2024',
-      icon: 'database'
-    }
-  ]
+  if (loading) return <p>Loading certificates...</p>
 
   return (
     <div className="student-page">
@@ -50,11 +48,11 @@ const StudentPage = () => {
           <div className="student-profile">
             <img src="https://via.placeholder.com/80" alt="Student" className="student-avatar-large" />
             <div className="student-info">
-              <h1>John Doe</h1>
-              <p>Computer Science Student</p>
+              <h1>Caleb Baraka</h1>
+              <p>Computer Science Graduate</p>
               <div className="student-stats">
                 <span className="stat">
-                  <strong>5</strong> Certificates
+                  <strong>{certificates.length}</strong> Certificates
                 </span>
                 <span className="stat">
                   <strong>3</strong> Institutions
@@ -69,7 +67,7 @@ const StudentPage = () => {
             <div key={cert.id} className="certificate-card">
               <div className="cert-header">
                 <div className="cert-icon">
-                  <FontAwesomeIcon icon={cert.icon} />
+                  <FontAwesomeIcon icon={cert.icon || 'certificate'} />
                 </div>
                 <div className="cert-status">
                   <FontAwesomeIcon icon="check-circle" />
@@ -81,19 +79,11 @@ const StudentPage = () => {
                 <p className="cert-date">Issued: {cert.date}</p>
               </div>
               <div className="cert-actions">
-                <button 
-                  className="btn btn-outline"
-                  onClick={() => handleQRCode(cert)}
-                >
-                  <FontAwesomeIcon icon="qrcode" />
-                  View QR
+                <button className="btn btn-outline" onClick={() => handleQRCode(cert)}>
+                  <FontAwesomeIcon icon="qrcode" /> View QR
                 </button>
-                <button 
-                  className="btn btn-primary"
-                  onClick={() => handleShare(cert)}
-                >
-                  <FontAwesomeIcon icon="share" />
-                  Share
+                <button className="btn btn-primary" onClick={() => handleShare(cert)}>
+                  <FontAwesomeIcon icon="share" /> Share
                 </button>
               </div>
             </div>

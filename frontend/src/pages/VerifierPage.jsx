@@ -1,58 +1,52 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import api from '../api'
 
 const VerifierPage = () => {
   const [hash, setHash] = useState('')
   const [isVerifying, setIsVerifying] = useState(false)
   const [verificationResult, setVerificationResult] = useState(null)
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const files = event.target.files
-    if (files && files.length > 0) {
-      console.log('File uploaded:', files[0].name)
-      setIsVerifying(true)
-      
-      // Simulate verification
-      setTimeout(() => {
-        setIsVerifying(false)
-        setVerificationResult({
-          isValid: true,
-          student: 'John Doe',
-          course: 'Blockchain Development',
-          issuer: 'Kwelichain Academy',
-          date: 'March 15, 2024',
-          status: 'Active'
-        })
-      }, 2000)
+    if (!files || files.length === 0) return
+
+    setIsVerifying(true)
+    try {
+      const formData = new FormData()
+      formData.append('file', files[0])
+      const res = await api.post('/certificates/verify-file', formData)
+      setVerificationResult(res.data)
+    } catch (err) {
+      console.error('Verification failed:', err)
+      setVerificationResult({ isValid: false })
+    } finally {
+      setIsVerifying(false)
     }
   }
 
-  const handleHashVerification = () => {
+  const handleHashVerification = async () => {
     if (!hash.trim()) {
       alert('Please enter a certificate hash')
       return
     }
-
     setIsVerifying(true)
-    
-    // Simulate verification
-    setTimeout(() => {
+    try {
+      const res = await api.post('/certificates/verify', { hash })
+      setVerificationResult(res.data)
+    } catch (err) {
+      console.error('Hash verification failed:', err)
+      setVerificationResult({ isValid: false })
+    } finally {
       setIsVerifying(false)
-      setVerificationResult({
-        isValid: true,
-        student: 'John Doe',
-        course: 'Blockchain Development',
-        issuer: 'Kwelichain Academy',
-        date: 'March 15, 2024',
-        status: 'Active'
-      })
-    }, 1500)
+    }
   }
 
   const handleScanQR = () => {
     alert('QR scanner would open here')
   }
 
+  // ⬇️ Keep your original JSX below ⬇️
   return (
     <div className="verifier-page">
       <div className="container">
@@ -80,9 +74,7 @@ const VerifierPage = () => {
                 </label>
               </div>
             </div>
-            <div className="or-divider">
-              <span>OR</span>
-            </div>
+            <div className="or-divider"><span>OR</span></div>
             <div className="hash-input">
               <input
                 type="text"
@@ -104,13 +96,11 @@ const VerifierPage = () => {
 
           <div className="quick-actions">
             <button className="btn btn-outline" onClick={handleScanQR}>
-              <FontAwesomeIcon icon="qrcode" />
-              Scan QR Code
+              <FontAwesomeIcon icon="qrcode" /> Scan QR Code
             </button>
           </div>
         </div>
 
-        {/* Verification Results */}
         {verificationResult && (
           <div className="verification-result">
             <div className={`result-card ${verificationResult.isValid ? 'result-success' : 'result-error'}`}>
@@ -119,39 +109,22 @@ const VerifierPage = () => {
               </div>
               <div className="result-content">
                 <h3>
-                  Certificate {verificationResult.isValid ? 'Verified' : 'Invalid'} 
-                  {verificationResult.isValid ? ' ✅' : ' ❌'}
+                  Certificate {verificationResult.isValid ? 'Verified ✅' : 'Invalid ❌'}
                 </h3>
-                <div className="result-details">
-                  <div className="detail-row">
-                    <span className="label">Student:</span>
-                    <span className="value">{verificationResult.student}</span>
+                {verificationResult.isValid && (
+                  <div className="result-details">
+                    <div className="detail-row"><span className="label">Student:</span> <span className="value">{verificationResult.student}</span></div>
+                    <div className="detail-row"><span className="label">Course:</span> <span className="value">{verificationResult.course}</span></div>
+                    <div className="detail-row"><span className="label">Issuer:</span> <span className="value">{verificationResult.issuer}</span></div>
+                    <div className="detail-row"><span className="label">Date:</span> <span className="value">{verificationResult.date}</span></div>
+                    <div className="detail-row"><span className="label">Status:</span> <span className="value status-verified">{verificationResult.status}</span></div>
                   </div>
-                  <div className="detail-row">
-                    <span className="label">Course:</span>
-                    <span className="value">{verificationResult.course}</span>
-                  </div>
-                  <div className="detail-row">
-                    <span className="label">Issuer:</span>
-                    <span className="value">{verificationResult.issuer}</span>
-                  </div>
-                  <div className="detail-row">
-                    <span className="label">Date:</span>
-                    <span className="value">{verificationResult.date}</span>
-                  </div>
-                  <div className="detail-row">
-                    <span className="label">Status:</span>
-                    <span className={`value ${verificationResult.isValid ? 'status-verified' : ''}`}>
-                      {verificationResult.status}
-                    </span>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
         )}
 
-        {/* Loading Overlay */}
         {isVerifying && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-8 rounded-xl text-center shadow-xl">
