@@ -1,6 +1,6 @@
 #  Kwelichain – Decentralized KYC for Africa
 
-Kwelichain is a **blockchain-based KYC and document verification system** built on **Avalanche**.  
+Kwelichain is a **blockchain-based KYC and document verification system**
 It solves the problem of **fake IDs, degrees, and certificates** in Africa by offering a **trustless, affordable, and secure verification layer** for institutions, employers, and individuals.
 
 ---
@@ -8,7 +8,7 @@ It solves the problem of **fake IDs, degrees, and certificates** in Africa by of
 ##  Why Kwelichain?
 - Fake certificates & IDs are rising with powerful AI tools.  
 - Western solutions (Persona, Veriff) are expensive & not tailored for Africa.  
-- Kwelichain provides a **local-first alternative**: fast, transparent, and built on Avalanche.
+- Kwelichain provides a **local-first alternative**: fast, transparent.
 
 ---
 
