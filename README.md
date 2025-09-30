@@ -1,7 +1,8 @@
-#  Kwelichain – Decentralized KYC for Africa
 
-Kwelichain is a **blockchain-based KYC and document verification system** built on **Avalanche**.  
-It solves the problem of **fake IDs, degrees, and certificates** in Africa by offering a **trustless, affordable, and secure verification layer** for institutions, employers, and individuals.
+# 🚀 Kwelichain – Blockchain-Powered KYC and Certificate Verification
+
+Kwelichain is a decentralized certificate verification system built for Africa.
+It solves the problem of fake IDs, degrees, and certificates by offering a trustless, affordable, and secure verification layer for institutions, employers, and individuals.
 
 ---
 
@@ -13,12 +14,17 @@ It solves the problem of **fake IDs, degrees, and certificates** in Africa by of
 ---
 
 ##  Features
-- Upload and hash documents (ID, certificates, licenses).  
-- Store hashes on Avalanche → tamper-proof verification.  
-- Verify authenticity in seconds.  
-- Responsive UI (Next.js + Tailwind).  
-- Backend powered by Go + MongoDB/Postgres.  
-- Dockerized for easy deployment.
+- Upload and hash certificates (degrees, IDs, licenses).
+
+- Store proofs on blockchain (Curvegrid MultiBaas + Avalanche).
+
+- Verify authenticity instantly via blockchain.
+
+- Responsive, modern UI (React + Tailwind).
+
+- Smart contract deployment handled via Hardhat + OpenZeppelin.
+
+- Full-stack: Frontend (Vite + React) + Backend (Node.js/Express) + Blockchain (Solidity).
 
 ---
 
@@ -34,44 +40,39 @@ graph TD
   G --> H[Verified / Fake]
 
 ---
-## Folder structure
 
 ## Project Structure
 
 ```bash
 kwelichain/
-├─ apps/
-│  └─ frontend/                     # Next.js + Tailwind (your frontend)
-├─ backend/
-│  ├─ cmd/
-│  │  └─ server/                    # main.go entry for the HTTP server
-│  ├─ internal/
-│  │  ├─ config/                    # DB, env, app config
-│  │  ├─ db/                        # migrations, sql (postgres)
-│  │  ├─ models/                    # GORM models / DTOs
-│  │  ├─ repository/                # DB access (one per model)
-│  │  ├─ service/                   # business logic + chain client
-│  │  ├─ handlers/                  # HTTP handlers (versioned)
-│  │  ├─ middleware/                # auth, rate-limit, logging
-│  │  ├─ contracts/                 # abigen-generated bindings
-│  │  └─ utils/                     # hashing, storage helpers
-│  ├─ Dockerfile
-│  └─ go.mod
-├─ smart-contract/
-│  ├─ contracts/
-│  │  └─ DocumentRegistry.sol
-│  ├─ scripts/
-│  │  └─ deploy.js
-│  ├─ hardhat.config.js
+├─ frontend/                     # Vite + React + Tailwind
+│  ├─ src/
+│  │  ├─ pages/                  # LandingPage, StudentPage, VerifierPage, etc.
+│  │  ├─ components/             # Navbar, UI components
+│  │  ├─ api/                    # Axios instance + contract API helpers
+│  │  └─ App.jsx
+│  ├─ index.html
+│  ├─ package.json
+│  └─ vite.config.js
+│
+├─ backend/                      # Node.js + Express
+│  ├─ routes/                    # API routes (certificates.js)
+│  ├─ server.js                  # Main entrypoint
+│  ├─ package.json
+│  └─ .env.example
+│
+├─ contracts/                    # Solidity smart contracts
+│  ├─ KwelichainCert.sol         # Certificate registry contract
+│  ├─ scripts/                   # Deployment scripts
+│  ├─ hardhat.config.cjs
 │  └─ package.json
+│
 ├─ infra/
-│  └─ docker-compose.yml            # Postgres, minio (S3), optionally redis
-├─ .github/
-│  └─ workflows/ci.yml
+│  └─ docker-compose.yml         
 ├─ docs/
-│  └─ openapi.yaml (generated)
-├─ README.md
-└─ .env.example
+│  └─ openapi.yaml (backend API spec)
+│
+└─ README.md
 
 ---
 
